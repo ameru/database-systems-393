@@ -1,0 +1,18 @@
+DROP TABLE Bike CASCADE CONSTRAINTS PURGE;
+DROP TABLE Owner CASCADE CONSTRAINTS PURGE;
+
+CREATE TABLE Owner
+(
+OID         NUMBER(6)       CONSTRAINT owner_oid_pk     PRIMARY KEY,
+OwnerName   VARCHAR2(30)    NOT NULL,
+OwnerPhone  CHAR2(12)
+);
+
+CREATE TABLE Bike
+(
+BikeID      NUMBER(6)       PRIMARY KEY,
+BikeMake    VARCHAR2(30)    NOT NULL,
+BikeModel   VARCHAR2(30)    UNIQUE,
+OID         NUMBER(6)       NOT NULL
+                            REFERENCES Owner(OID)
+);
